@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace projeto4
 {
-    public partial class Cadastro : MaterialForm
+    public partial class Professor : MaterialForm
     {
         bool isAlteracao = false;
         string cs = @"server=localhost;" +
@@ -15,7 +15,7 @@ namespace projeto4
                     "database=academico";
 
 
-        public Cadastro()
+        public Professor()
         {
             InitializeComponent();
         }
@@ -91,7 +91,7 @@ namespace projeto4
             cmd.Parameters.AddWithValue("@bairro", txtBairro.Text);
             cmd.Parameters.AddWithValue("@cidade", txtCidade.Text);
             cmd.Parameters.AddWithValue("@estado", cboEstado.Text);
-            cmd.Parameters.AddWithValue("@senha", txtSenha.Text);
+            //cmd.Parameters.AddWithValue("@senha", txtSenha.Text);
             if (isAlteracao)
             {
                 cmd.Parameters.AddWithValue("@id", txtID.Text);
@@ -156,12 +156,12 @@ namespace projeto4
                 txtCidade.Focus();
                 return false;
             }
-            if (string.IsNullOrEmpty(txtSenha.Text))
+            /*if (string.IsNullOrEmpty(txtSenha.Text))
             {
                 MessageBox.Show("Senha é obrigatória", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtSenha.Focus();
                 return false;
-            }
+            }*/
             return true;
         }
 
@@ -219,7 +219,7 @@ namespace projeto4
                 txtBairro.Text = linha.Cells["bairro"].Value.ToString();
                 txtCidade.Text = linha.Cells["cidade"].Value.ToString();
                 cboEstado.Text = linha.Cells["estado"].Value.ToString();
-                txtSenha.Text = linha.Cells["senha"].Value.ToString();
+                //txtSenha.Text = linha.Cells["senha"].Value.ToString();
                 materialTabControl1.SelectedIndex = 0;
                 txtMatricula.Focus();
             }

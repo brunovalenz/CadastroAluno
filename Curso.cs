@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace projeto4
 {
-    public partial class Cadastro : MaterialForm
+    public partial class Curso : MaterialForm
     {
         bool isAlteracao = false;
         string cs = @"server=localhost;" +
@@ -15,7 +15,7 @@ namespace projeto4
                     "database=academico";
 
 
-        public Cadastro()
+        public Curso()
         {
             InitializeComponent();
         }
@@ -81,17 +81,18 @@ namespace projeto4
             {
                 sql = "INSERT INTO aluno(matricula, data_nasc, nome, endereco, bairro, cidade, estado, senha) VALUES (@matricula, @data_nasc, @nome, @endereco, @bairro, @cidade, @estado, @senha)";
             }
-
+            /*
             var cmd = new MySqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@matricula", txtMatricula.Text);
-            DateTime.TryParse(txtDataNasc.Text, out var dataNascimento);
+            DateTime.TryParse(txtAno.Text, out var dataNascimento);
             cmd.Parameters.AddWithValue("@data_nasc", dataNascimento);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text);
             cmd.Parameters.AddWithValue("@endereco", txtEndereço.Text);
             cmd.Parameters.AddWithValue("@bairro", txtBairro.Text);
             cmd.Parameters.AddWithValue("@cidade", txtCidade.Text);
-            cmd.Parameters.AddWithValue("@estado", cboEstado.Text);
+            cmd.Parameters.AddWithValue("@estado", cboTipo.Text);
             cmd.Parameters.AddWithValue("@senha", txtSenha.Text);
+            
             if (isAlteracao)
             {
                 cmd.Parameters.AddWithValue("@id", txtID.Text);
@@ -100,8 +101,9 @@ namespace projeto4
             cmd.ExecuteNonQuery();
 
             LimpaCampos();
+            */
         }
-
+            
         private void CarregaGrid()
         {
             var con = new MySqlConnection(cs);
@@ -120,6 +122,7 @@ namespace projeto4
 
         private bool ValidarFormulario()
         {
+            /*
             if (string.IsNullOrEmpty(txtMatricula.Text))
             {
                 MessageBox.Show("Matricula é obrigatória", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -132,10 +135,10 @@ namespace projeto4
                 txtNome.Focus();
                 return false;
             }
-            if (!DateTime.TryParse(txtDataNasc.Text, out DateTime _))
+            if (!DateTime.TryParse(txtAno.Text, out DateTime _))
             {
                 MessageBox.Show("Data é obrigatória", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtDataNasc.Focus();
+                txtAno.Focus();
                 return false;
             }
             if (string.IsNullOrEmpty(txtEndereço.Text))
@@ -162,7 +165,9 @@ namespace projeto4
                 txtSenha.Focus();
                 return false;
             }
+            */
             return true;
+            
         }
 
         private void tabPage2_Enter(object sender, EventArgs e)
@@ -209,19 +214,21 @@ namespace projeto4
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
+                /*
                 isAlteracao = true;
                 var linha = dataGridView1.SelectedRows[0];
                 txtID.Text = linha.Cells["id"].Value.ToString();
                 txtMatricula.Text = linha.Cells["matricula"].Value.ToString();
-                txtDataNasc.Text = linha.Cells["data_nasc"].Value.ToString();
+                txtAno.Text = linha.Cells["data_nasc"].Value.ToString();
                 txtNome.Text = linha.Cells["nome"].Value.ToString();
                 txtEndereço.Text = linha.Cells["endereco"].Value.ToString();
                 txtBairro.Text = linha.Cells["bairro"].Value.ToString();
                 txtCidade.Text = linha.Cells["cidade"].Value.ToString();
-                cboEstado.Text = linha.Cells["estado"].Value.ToString();
+                cboTipo.Text = linha.Cells["estado"].Value.ToString();
                 txtSenha.Text = linha.Cells["senha"].Value.ToString();
                 materialTabControl1.SelectedIndex = 0;
                 txtMatricula.Focus();
+                */
             }
             else
             {
