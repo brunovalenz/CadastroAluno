@@ -2,7 +2,6 @@
 using ReaLTaiizor.Controls;
 using ReaLTaiizor.Forms;
 using System.Data;
-using System.Xml.Linq;
 
 namespace projeto4
 {
@@ -66,32 +65,20 @@ namespace projeto4
             var sql = "";
             if (isAlteracao)
             {
-                sql = "UPDATE aluno SET " +
-                          "matricula = @matricula," +
-                          "data_nasc = @data_nasc," +
+                sql = "UPDATE curso SET " +
                           "nome = @nome," +
-                          "endereco = @endereco," +
-                          "bairro = @bairro," +
-                          "cidade = @cidade," +
-                          "estado= @estado," +
-                          "senha = @senha" +
+                          "tipo = @tipo," +
+                          "ano_criacao = @ano_criacao," +
                           " WHERE id = @id";
             }
             else
             {
-                sql = "INSERT INTO aluno(matricula, data_nasc, nome, endereco, bairro, cidade, estado, senha) VALUES (@matricula, @data_nasc, @nome, @endereco, @bairro, @cidade, @estado, @senha)";
+                sql = "INSERT INTO curso(nome, tipo, ano_criacao) VALUES (@nome, @tipo, @ano_criacao)";
             }
-            /*
             var cmd = new MySqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@matricula", txtMatricula.Text);
-            DateTime.TryParse(txtAno.Text, out var dataNascimento);
-            cmd.Parameters.AddWithValue("@data_nasc", dataNascimento);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text);
-            cmd.Parameters.AddWithValue("@endereco", txtEndereço.Text);
-            cmd.Parameters.AddWithValue("@bairro", txtBairro.Text);
-            cmd.Parameters.AddWithValue("@cidade", txtCidade.Text);
-            cmd.Parameters.AddWithValue("@estado", cboTipo.Text);
-            cmd.Parameters.AddWithValue("@senha", txtSenha.Text);
+            cmd.Parameters.AddWithValue("@tipo", cboTipo.Text);
+            cmd.Parameters.AddWithValue("@ano_criacao", txtAno.Text);
             
             if (isAlteracao)
             {
@@ -101,7 +88,6 @@ namespace projeto4
             cmd.ExecuteNonQuery();
 
             LimpaCampos();
-            */
         }
             
         private void CarregaGrid()
@@ -109,7 +95,7 @@ namespace projeto4
             var con = new MySqlConnection(cs);
             con.Open();
 
-            var sql = "SELECT * FROM aluno";
+            var sql = "SELECT * FROM curso";
 
             var sqlAd = new MySqlDataAdapter();
             sqlAd.SelectCommand = new MySqlCommand(sql, con);
@@ -122,50 +108,25 @@ namespace projeto4
 
         private bool ValidarFormulario()
         {
-            /*
-            if (string.IsNullOrEmpty(txtMatricula.Text))
-            {
-                MessageBox.Show("Matricula é obrigatória", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtMatricula.Focus();
-                return false;
-            }
             if (string.IsNullOrEmpty(txtNome.Text))
             {
                 MessageBox.Show("Nome é obrigatório", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNome.Focus();
                 return false;
             }
-            if (!DateTime.TryParse(txtAno.Text, out DateTime _))
+            if (string.IsNullOrEmpty(cboTipo.Text))
             {
-                MessageBox.Show("Data é obrigatória", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Tipo é obrigatório", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cboTipo.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtAno.Text))
+            {
+                MessageBox.Show("Ano de criação é obrigatório", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtAno.Focus();
                 return false;
             }
-            if (string.IsNullOrEmpty(txtEndereço.Text))
-            {
-                MessageBox.Show("Endereço é obrigatório", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtEndereço.Focus();
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtBairro.Text))
-            {
-                MessageBox.Show("Bairro é obrigatório", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtBairro.Focus();
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtCidade.Text))
-            {
-                MessageBox.Show("Cidade é obrigatória", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtCidade.Focus();
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtSenha.Text))
-            {
-                MessageBox.Show("Senha é obrigatória", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtSenha.Focus();
-                return false;
-            }
-            */
+
             return true;
             
         }
@@ -189,7 +150,7 @@ namespace projeto4
             }
             else
             {
-                MessageBox.Show("Selecione um aluno!", "IFSP",
+                MessageBox.Show("Selecione um curso!", "IFSP",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -198,7 +159,7 @@ namespace projeto4
         {
             var con = new MySqlConnection(cs);
             con.Open();
-            var sql = "DELETE FROM ALUNO WHERE id = @id";
+            var sql = "DELETE FROM CURSO WHERE id = @id";
             var cmd = new MySqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Prepare();
@@ -214,25 +175,18 @@ namespace projeto4
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                /*
                 isAlteracao = true;
                 var linha = dataGridView1.SelectedRows[0];
                 txtID.Text = linha.Cells["id"].Value.ToString();
-                txtMatricula.Text = linha.Cells["matricula"].Value.ToString();
-                txtAno.Text = linha.Cells["data_nasc"].Value.ToString();
                 txtNome.Text = linha.Cells["nome"].Value.ToString();
-                txtEndereço.Text = linha.Cells["endereco"].Value.ToString();
-                txtBairro.Text = linha.Cells["bairro"].Value.ToString();
-                txtCidade.Text = linha.Cells["cidade"].Value.ToString();
-                cboTipo.Text = linha.Cells["estado"].Value.ToString();
-                txtSenha.Text = linha.Cells["senha"].Value.ToString();
+                cboTipo.Text = linha.Cells["tipo"].Value.ToString();
+                txtAno.Text = linha.Cells["ano_criacao"].Value.ToString();
                 materialTabControl1.SelectedIndex = 0;
-                txtMatricula.Focus();
-                */
+                txtNome.Focus();
             }
             else
             {
-                MessageBox.Show("Selecione algum aluno!", "IFSP",
+                MessageBox.Show("Selecione algum curso!", "IFSP",
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -240,6 +194,18 @@ namespace projeto4
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             Editar();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpaCampos();
+            txtNome.Focus();
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            LimpaCampos();
+            txtNome.Focus();
         }
 
     }

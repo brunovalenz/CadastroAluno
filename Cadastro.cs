@@ -2,7 +2,6 @@
 using ReaLTaiizor.Controls;
 using ReaLTaiizor.Forms;
 using System.Data;
-using System.Xml.Linq;
 
 namespace projeto4
 {
@@ -235,6 +234,17 @@ namespace projeto4
             Editar();
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpaCampos();
+            txtNome.Focus();
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            LimpaCampos();
+            txtNome.Focus();
+        }
     }
 
 }

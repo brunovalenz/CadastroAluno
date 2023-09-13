@@ -164,6 +164,7 @@
             btnCancelar.UseAccentColor = false;
             btnCancelar.UseCompatibleTextRendering = true;
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // cboEstado
             // 
@@ -530,6 +531,7 @@
             btnNovo.UseAccentColor = false;
             btnNovo.UseCompatibleTextRendering = true;
             btnNovo.UseVisualStyleBackColor = true;
+            btnNovo.Click += btnNovo_Click;
             // 
             // Cadastro
             // 

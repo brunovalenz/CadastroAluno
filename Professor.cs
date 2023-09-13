@@ -2,7 +2,6 @@
 using ReaLTaiizor.Controls;
 using ReaLTaiizor.Forms;
 using System.Data;
-using System.Xml.Linq;
 
 namespace projeto4
 {
@@ -66,20 +65,21 @@ namespace projeto4
             var sql = "";
             if (isAlteracao)
             {
-                sql = "UPDATE aluno SET " +
+                sql = "UPDATE professor SET " +
                           "matricula = @matricula," +
                           "data_nasc = @data_nasc," +
                           "nome = @nome," +
+                          "titulacao = @titulacao," +
+                          "area_formacao = @area_formacao," +
                           "endereco = @endereco," +
                           "bairro = @bairro," +
                           "cidade = @cidade," +
                           "estado= @estado," +
-                          "senha = @senha" +
                           " WHERE id = @id";
             }
             else
             {
-                sql = "INSERT INTO aluno(matricula, data_nasc, nome, endereco, bairro, cidade, estado, senha) VALUES (@matricula, @data_nasc, @nome, @endereco, @bairro, @cidade, @estado, @senha)";
+                sql = "INSERT INTO professor(matricula, data_nasc, nome, titulacao, area_formacao, endereco, bairro, cidade, estado) VALUES (@matricula, @data_nasc, @nome, @titulacao, @area_formacao, @endereco, @bairro, @cidade, @estado)";
             }
 
             var cmd = new MySqlCommand(sql, con);
@@ -87,11 +87,13 @@ namespace projeto4
             DateTime.TryParse(txtDataNasc.Text, out var dataNascimento);
             cmd.Parameters.AddWithValue("@data_nasc", dataNascimento);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text);
+            cmd.Parameters.AddWithValue("@titulacao", cboTitulacao.Text);
+            cmd.Parameters.AddWithValue("@area_formacao", txtAreaFormacao.Text);
             cmd.Parameters.AddWithValue("@endereco", txtEndereço.Text);
             cmd.Parameters.AddWithValue("@bairro", txtBairro.Text);
             cmd.Parameters.AddWithValue("@cidade", txtCidade.Text);
             cmd.Parameters.AddWithValue("@estado", cboEstado.Text);
-            //cmd.Parameters.AddWithValue("@senha", txtSenha.Text);
+ 
             if (isAlteracao)
             {
                 cmd.Parameters.AddWithValue("@id", txtID.Text);
@@ -107,7 +109,7 @@ namespace projeto4
             var con = new MySqlConnection(cs);
             con.Open();
 
-            var sql = "SELECT * FROM aluno";
+            var sql = "SELECT * FROM professor";
 
             var sqlAd = new MySqlDataAdapter();
             sqlAd.SelectCommand = new MySqlCommand(sql, con);
@@ -130,6 +132,18 @@ namespace projeto4
             {
                 MessageBox.Show("Nome é obrigatório", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNome.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(cboTitulacao.Text))
+            {
+                MessageBox.Show("Titulação é obrigatório", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cboTitulacao.Focus();
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtAreaFormacao.Text))
+            {
+                MessageBox.Show("Área de Formacao é obrigatório", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtAreaFormacao.Focus();
                 return false;
             }
             if (!DateTime.TryParse(txtDataNasc.Text, out DateTime _))
@@ -156,12 +170,6 @@ namespace projeto4
                 txtCidade.Focus();
                 return false;
             }
-            /*if (string.IsNullOrEmpty(txtSenha.Text))
-            {
-                MessageBox.Show("Senha é obrigatória", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtSenha.Focus();
-                return false;
-            }*/
             return true;
         }
 
@@ -184,7 +192,7 @@ namespace projeto4
             }
             else
             {
-                MessageBox.Show("Selecione um aluno!", "IFSP",
+                MessageBox.Show("Selecione um professor!", "IFSP",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -193,7 +201,7 @@ namespace projeto4
         {
             var con = new MySqlConnection(cs);
             con.Open();
-            var sql = "DELETE FROM ALUNO WHERE id = @id";
+            var sql = "DELETE FROM PROFESSOR WHERE id = @id";
             var cmd = new MySqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Prepare();
@@ -215,17 +223,18 @@ namespace projeto4
                 txtMatricula.Text = linha.Cells["matricula"].Value.ToString();
                 txtDataNasc.Text = linha.Cells["data_nasc"].Value.ToString();
                 txtNome.Text = linha.Cells["nome"].Value.ToString();
+                cboTitulacao.Text = linha.Cells["titulacao"].ToString();
+                txtAreaFormacao.Text = linha.Cells["area_formacao"].ToString();
                 txtEndereço.Text = linha.Cells["endereco"].Value.ToString();
                 txtBairro.Text = linha.Cells["bairro"].Value.ToString();
                 txtCidade.Text = linha.Cells["cidade"].Value.ToString();
                 cboEstado.Text = linha.Cells["estado"].Value.ToString();
-                //txtSenha.Text = linha.Cells["senha"].Value.ToString();
                 materialTabControl1.SelectedIndex = 0;
                 txtMatricula.Focus();
             }
             else
             {
-                MessageBox.Show("Selecione algum aluno!", "IFSP",
+                MessageBox.Show("Selecione algum professor!", "IFSP",
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -233,6 +242,18 @@ namespace projeto4
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             Editar();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpaCampos();
+            txtNome.Focus();
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            LimpaCampos();
+            txtNome.Focus();
         }
 
     }
