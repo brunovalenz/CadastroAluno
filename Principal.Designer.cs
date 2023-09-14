@@ -29,75 +29,94 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(principal));
-            menuStrip1 = new MenuStrip();
-            opçõesToolStripMenuItem = new ToolStripMenuItem();
-            cadastroToolStripMenuItem = new ToolStripMenuItem();
-            professorToolStripMenuItem = new ToolStripMenuItem();
-            cursoToolStripMenuItem = new ToolStripMenuItem();
-            menuStrip1.SuspendLayout();
-            SuspendLayout();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.opçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.professorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cursoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.relatóriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.relatórioAlunoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
+            this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { opçõesToolStripMenuItem });
-            menuStrip1.Location = new Point(3, 85);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Padding = new Padding(7, 3, 0, 3);
-            menuStrip1.Size = new Size(1322, 30);
-            menuStrip1.TabIndex = 1;
-            menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.opçõesToolStripMenuItem,
+            this.relatóriosToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(3, 64);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1156, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
             // 
             // opçõesToolStripMenuItem
             // 
-            opçõesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cadastroToolStripMenuItem, professorToolStripMenuItem, cursoToolStripMenuItem });
-            opçõesToolStripMenuItem.Name = "opçõesToolStripMenuItem";
-            opçõesToolStripMenuItem.Size = new Size(82, 24);
-            opçõesToolStripMenuItem.Text = "Cadastro";
-            opçõesToolStripMenuItem.Click += opçõesToolStripMenuItem_Click;
+            this.opçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cadastroToolStripMenuItem,
+            this.professorToolStripMenuItem,
+            this.cursoToolStripMenuItem});
+            this.opçõesToolStripMenuItem.Name = "opçõesToolStripMenuItem";
+            this.opçõesToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.opçõesToolStripMenuItem.Text = "Cadastro";
             // 
             // cadastroToolStripMenuItem
             // 
-            cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
-            cadastroToolStripMenuItem.Size = new Size(224, 26);
-            cadastroToolStripMenuItem.Text = "Aluno";
-            cadastroToolStripMenuItem.Click += cadastroToolStripMenuItem_Click;
+            this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
+            this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.cadastroToolStripMenuItem.Text = "Aluno";
+            this.cadastroToolStripMenuItem.Click += new System.EventHandler(this.cadastroToolStripMenuItem_Click);
             // 
             // professorToolStripMenuItem
             // 
-            professorToolStripMenuItem.Name = "professorToolStripMenuItem";
-            professorToolStripMenuItem.Size = new Size(224, 26);
-            professorToolStripMenuItem.Text = "Professor";
-            professorToolStripMenuItem.Click += professorToolStripMenuItem_Click;
+            this.professorToolStripMenuItem.Name = "professorToolStripMenuItem";
+            this.professorToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.professorToolStripMenuItem.Text = "Professor";
+            this.professorToolStripMenuItem.Click += new System.EventHandler(this.professorToolStripMenuItem_Click);
             // 
             // cursoToolStripMenuItem
             // 
-            cursoToolStripMenuItem.Name = "cursoToolStripMenuItem";
-            cursoToolStripMenuItem.Size = new Size(224, 26);
-            cursoToolStripMenuItem.Text = "Curso";
-            cursoToolStripMenuItem.Click += cursoToolStripMenuItem_Click;
+            this.cursoToolStripMenuItem.Name = "cursoToolStripMenuItem";
+            this.cursoToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.cursoToolStripMenuItem.Text = "Curso";
+            this.cursoToolStripMenuItem.Click += new System.EventHandler(this.cursoToolStripMenuItem_Click);
+            // 
+            // relatóriosToolStripMenuItem
+            // 
+            this.relatóriosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.relatórioAlunoToolStripMenuItem});
+            this.relatóriosToolStripMenuItem.Name = "relatóriosToolStripMenuItem";
+            this.relatóriosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.relatóriosToolStripMenuItem.Text = "Relatórios";
+            // 
+            // relatórioAlunoToolStripMenuItem
+            // 
+            this.relatórioAlunoToolStripMenuItem.Name = "relatórioAlunoToolStripMenuItem";
+            this.relatórioAlunoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.relatórioAlunoToolStripMenuItem.Text = "Relatório Aluno";
+            this.relatórioAlunoToolStripMenuItem.Click += new System.EventHandler(this.relatórioAlunoToolStripMenuItem_Click);
             // 
             // principal
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(1328, 1011);
-            Controls.Add(menuStrip1);
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            IsMdiContainer = true;
-            MainMenuStrip = menuStrip1;
-            Margin = new Padding(3, 4, 3, 4);
-            Name = "principal";
-            Padding = new Padding(3, 85, 3, 4);
-            Text = "Principal";
-            WindowState = FormWindowState.Maximized;
-            FormClosing += principal_FormClosing;
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ClientSize = new System.Drawing.Size(1162, 758);
+            this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "principal";
+            this.Text = "Principal";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.principal_FormClosing);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -107,5 +126,7 @@
         private ToolStripMenuItem cadastroToolStripMenuItem;
         private ToolStripMenuItem professorToolStripMenuItem;
         private ToolStripMenuItem cursoToolStripMenuItem;
+        private ToolStripMenuItem relatóriosToolStripMenuItem;
+        private ToolStripMenuItem relatórioAlunoToolStripMenuItem;
     }
 }

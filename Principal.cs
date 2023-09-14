@@ -45,5 +45,13 @@ namespace projeto4
             curso.MdiParent = this;
             curso.Show();
         }
+
+        private void relatórioAlunoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RelatórioAluno relatorioAluno = new RelatórioAluno();
+            relatorioAluno.MdiParent = this;
+            relatorioAluno.Show();
+        }
+
     }
 }

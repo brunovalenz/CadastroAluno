@@ -245,6 +245,22 @@ namespace projeto4
             LimpaCampos();
             txtNome.Focus();
         }
+
+        private void btnNovo_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSalvar_Click_1(object sender, EventArgs e)
+        {
+            if (ValidarFormulario())
+            {
+                Salvar();
+                materialTabControl1.SelectedIndex = 1;
+            }
+        }
+
+       
     }
 
 }

@@ -1,6 +1,4 @@
-﻿﻿/*DROP DATABASE academico
-*/
-
+﻿
 CREATE DATABASE IF NOT EXISTS academico;
 
 USE academico;
@@ -25,7 +23,7 @@ CREATE TABLE curso (
 	nome			VARCHAR(100)	NOT NULL,
 	tipo			VARCHAR(100)	NOT NULL, 
 	-- Técnico, Tecnólogo, Bacharelado, Licenciatura
-	ano_criacao		INT				NOT NULL
+	ano_criacao		INT				NOT NULL,
 	PRIMARY KEY (id)
 );
 

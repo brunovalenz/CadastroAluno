@@ -256,6 +256,10 @@ namespace projeto4
             txtNome.Focus();
         }
 
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

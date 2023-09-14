@@ -208,6 +208,10 @@ namespace projeto4
             txtNome.Focus();
         }
 
+        private void txtNome_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
