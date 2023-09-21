@@ -8,9 +8,9 @@ using System.Diagnostics;
 
 namespace projeto4
 {
-    public partial class RelatórioAluno : MaterialForm
+    public partial class RelatorioCurso : MaterialForm
     {
-        public RelatórioAluno()
+        public RelatorioCurso()
         {
             InitializeComponent();
             CarregaImpressoras();
@@ -28,17 +28,17 @@ namespace projeto4
             var con = new MySqlConnection(cs);
             con.Open();
 
-            var sql = "SELECT * FROM aluno WHERE 1 = 1";
+            var sql = "SELECT * FROM curso WHERE 1 = 1";
 
-            if(cboEstado.Text != "") sql += " and estado = @estado";
-            if (txtCidade.Text != "") sql += " and cidade = @cidade";
+            if (cboTipo.Text != "") sql += " and tipo = @tipo";
+            if (txtAno.Text != "    /") sql += " and ano_criacao = @ano_criacao";
 
             var sqlAd = new MySqlDataAdapter();
             sqlAd.SelectCommand = new MySqlCommand(sql, con);
 
-            if(cboEstado.Text != "") sqlAd.SelectCommand.Parameters.AddWithValue("@estado", cboEstado.Text);
+            if (cboTipo.Text != "") sqlAd.SelectCommand.Parameters.AddWithValue("@tipo", cboTipo.Text);
 
-            if (txtCidade.Text != "") sqlAd.SelectCommand.Parameters.AddWithValue("@cidade", txtCidade.Text);
+            if (txtAno.Text != "") sqlAd.SelectCommand.Parameters.AddWithValue("@ano_criacao", txtAno.Text);
 
 
             var dt = new DataTable();
@@ -55,27 +55,27 @@ namespace projeto4
             PdfTrueTypeFont font1 = new PdfTrueTypeFont(new Font("Arial", 16f, FontStyle.Bold));
             PdfStringFormat format1 = new PdfStringFormat(PdfTextAlignment.Center);
 
-            page.Canvas.DrawString("Relatório de Alunos", font1, brush1, page.Canvas.ClientSize.Width / 2, y, format1);
+            page.Canvas.DrawString("Relatório de Cursos", font1, brush1, page.Canvas.ClientSize.Width / 2, y, format1);
 
             PdfTable table = new PdfTable();
-            table.Style.CellPadding= 2;
+            table.Style.CellPadding = 2;
             table.Style.BorderPen = new PdfPen(brush1, 0.75f);
-            table.Style.HeaderStyle.StringFormat= new PdfStringFormat(PdfTextAlignment.Center);
+            table.Style.HeaderStyle.StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
             table.Style.HeaderSource = PdfHeaderSource.ColumnCaptions;
             //table.Style.HeaderRowCount= 1;
             table.Style.ShowHeader = true;
             table.Style.HeaderStyle.BackgroundBrush = PdfBrushes.Red;
-            table.DataSource= dt;
+            table.DataSource = dt;
 
-            foreach(PdfColumn col in table.Columns)
+            foreach (PdfColumn col in table.Columns)
             {
                 col.StringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
             }
 
-            table.Draw(page, new PointF(0,y+30));
+            table.Draw(page, new PointF(0, y + 30));
 
 
-            doc.SaveToFile("RelatorioAlunos.pdf");
+            doc.SaveToFile("RelatorioCursos.pdf");
 
 
             con.Close();
@@ -83,7 +83,7 @@ namespace projeto4
 
         private void CarregaImpressoras()
         {
-            foreach(string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+            foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
             {
                 cboImpressora.Items.Add(printer);
             }
@@ -98,7 +98,7 @@ namespace projeto4
 
             PdfDocument doc = new PdfDocument();
 
-            doc.LoadFromFile(@"RelatorioAlunos.pdf");
+            doc.LoadFromFile(@"RelatorioCursos.pdf");
             doc.PrintSettings.PrinterName = impressora;
             doc.Print();
 
@@ -108,11 +108,12 @@ namespace projeto4
         {
             MontaRelatorio();
             var p = new Process();
-            p.StartInfo = new ProcessStartInfo(@"RelatorioAlunos.pdf")
+            p.StartInfo = new ProcessStartInfo(@"RelatorioCursos.pdf")
             {
                 UseShellExecute = true
             };
             p.Start();
         }
+            
     }
 }

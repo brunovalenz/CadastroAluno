@@ -36,6 +36,8 @@
             this.cursoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.relatóriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.relatórioAlunoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.relatórioProfessorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.relatórioCursoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,7 +87,9 @@
             // relatóriosToolStripMenuItem
             // 
             this.relatóriosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.relatórioAlunoToolStripMenuItem});
+            this.relatórioAlunoToolStripMenuItem,
+            this.relatórioProfessorToolStripMenuItem,
+            this.relatórioCursoToolStripMenuItem});
             this.relatóriosToolStripMenuItem.Name = "relatóriosToolStripMenuItem";
             this.relatóriosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.relatóriosToolStripMenuItem.Text = "Relatórios";
@@ -93,9 +97,23 @@
             // relatórioAlunoToolStripMenuItem
             // 
             this.relatórioAlunoToolStripMenuItem.Name = "relatórioAlunoToolStripMenuItem";
-            this.relatórioAlunoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.relatórioAlunoToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.relatórioAlunoToolStripMenuItem.Text = "Relatório Aluno";
             this.relatórioAlunoToolStripMenuItem.Click += new System.EventHandler(this.relatórioAlunoToolStripMenuItem_Click);
+            // 
+            // relatórioProfessorToolStripMenuItem
+            // 
+            this.relatórioProfessorToolStripMenuItem.Name = "relatórioProfessorToolStripMenuItem";
+            this.relatórioProfessorToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.relatórioProfessorToolStripMenuItem.Text = "Relatório Professor";
+            this.relatórioProfessorToolStripMenuItem.Click += new System.EventHandler(this.relatórioProfessorToolStripMenuItem_Click);
+            // 
+            // relatórioCursoToolStripMenuItem
+            // 
+            this.relatórioCursoToolStripMenuItem.Name = "relatórioCursoToolStripMenuItem";
+            this.relatórioCursoToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.relatórioCursoToolStripMenuItem.Text = "Relatório Curso";
+            this.relatórioCursoToolStripMenuItem.Click += new System.EventHandler(this.relatórioCursoToolStripMenuItem_Click);
             // 
             // principal
             // 
@@ -109,7 +127,7 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "principal";
-            this.Text = "Principal";
+            this.Text = "IFSP - Sistema de Gerenciamento Acadêmico";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.principal_FormClosing);
             this.menuStrip1.ResumeLayout(false);
@@ -128,5 +146,7 @@
         private ToolStripMenuItem cursoToolStripMenuItem;
         private ToolStripMenuItem relatóriosToolStripMenuItem;
         private ToolStripMenuItem relatórioAlunoToolStripMenuItem;
+        private ToolStripMenuItem relatórioProfessorToolStripMenuItem;
+        private ToolStripMenuItem relatórioCursoToolStripMenuItem;
     }
 }

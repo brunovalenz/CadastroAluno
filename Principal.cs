@@ -53,5 +53,19 @@ namespace projeto4
             relatorioAluno.Show();
         }
 
+        private void relatórioProfessorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RelatorioProfessor relatorioProfessor = new RelatorioProfessor();
+            relatorioProfessor.MdiParent = this;
+            relatorioProfessor.Show();
+        }
+
+        private void relatórioCursoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RelatorioCurso relatorioCurso = new RelatorioCurso();
+            relatorioCurso.MdiParent = this;
+            relatorioCurso.Show();
+        }
+
     }
 }

@@ -466,6 +466,8 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
@@ -542,7 +544,7 @@
             this.btnNovo.UseAccentColor = false;
             this.btnNovo.UseCompatibleTextRendering = true;
             this.btnNovo.UseVisualStyleBackColor = true;
-            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click_1);
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // Cadastro
             // 

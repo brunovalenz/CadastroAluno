@@ -71,7 +71,7 @@
             this.tabPage1.Controls.Add(this.txtNome);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(547, 364);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Cadastrar";
@@ -129,6 +129,7 @@
             this.btnSalvar.UseAccentColor = false;
             this.btnSalvar.UseCompatibleTextRendering = true;
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnCancelar
             // 
@@ -150,6 +151,7 @@
             this.btnCancelar.UseAccentColor = false;
             this.btnCancelar.UseCompatibleTextRendering = true;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // cboTipo
             // 
@@ -263,14 +265,17 @@
             this.tabPage2.Controls.Add(this.btnNovo);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(547, 364);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Visualizar";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Enter += new System.EventHandler(this.tabPage2_Enter);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
@@ -303,6 +308,7 @@
             this.btnEditar.UseAccentColor = false;
             this.btnEditar.UseCompatibleTextRendering = true;
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnExcluir
             // 
@@ -324,6 +330,7 @@
             this.btnExcluir.UseAccentColor = false;
             this.btnExcluir.UseCompatibleTextRendering = true;
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnNovo
             // 
@@ -345,6 +352,7 @@
             this.btnNovo.UseAccentColor = false;
             this.btnNovo.UseCompatibleTextRendering = true;
             this.btnNovo.UseVisualStyleBackColor = true;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // Curso
             // 

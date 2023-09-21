@@ -131,12 +131,6 @@ namespace projeto4
                 txtNome.Focus();
                 return false;
             }
-            if (!DateTime.TryParse(txtDataNasc.Text, out DateTime _))
-            {
-                MessageBox.Show("Data é obrigatória", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtDataNasc.Focus();
-                return false;
-            }
             if (string.IsNullOrEmpty(txtEndereço.Text))
             {
                 MessageBox.Show("Endereço é obrigatório", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -243,12 +237,8 @@ namespace projeto4
         private void btnNovo_Click(object sender, EventArgs e)
         {
             LimpaCampos();
+            materialTabControl1.SelectedIndex = 0;
             txtNome.Focus();
-        }
-
-        private void btnNovo_Click_1(object sender, EventArgs e)
-        {
-
         }
 
         private void btnSalvar_Click_1(object sender, EventArgs e)

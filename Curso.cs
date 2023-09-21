@@ -68,7 +68,7 @@ namespace projeto4
                 sql = "UPDATE curso SET " +
                           "nome = @nome," +
                           "tipo = @tipo," +
-                          "ano_criacao = @ano_criacao," +
+                          "ano_criacao = @ano_criacao" +
                           " WHERE id = @id";
             }
             else
@@ -205,6 +205,7 @@ namespace projeto4
         private void btnNovo_Click(object sender, EventArgs e)
         {
             LimpaCampos();
+            materialTabControl1.SelectedIndex = 0;
             txtNome.Focus();
         }
 

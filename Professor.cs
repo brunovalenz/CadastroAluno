@@ -67,25 +67,25 @@ namespace projeto4
             {
                 sql = "UPDATE professor SET " +
                           "matricula = @matricula," +
-                          "data_nasc = @data_nasc," +
+                          "dt_nascimento = @dt_nascimento," +
                           "nome = @nome," +
                           "titulacao = @titulacao," +
                           "area_formacao = @area_formacao," +
                           "endereco = @endereco," +
                           "bairro = @bairro," +
                           "cidade = @cidade," +
-                          "estado= @estado," +
+                          "estado= @estado" +
                           " WHERE id = @id";
             }
             else
             {
-                sql = "INSERT INTO professor(matricula, data_nasc, nome, titulacao, area_formacao, endereco, bairro, cidade, estado) VALUES (@matricula, @data_nasc, @nome, @titulacao, @area_formacao, @endereco, @bairro, @cidade, @estado)";
+                sql = "INSERT INTO professor(matricula, dt_nascimento, nome, titulacao, area_formacao, endereco, bairro, cidade, estado) VALUES (@matricula, @dt_nascimento, @nome, @titulacao, @area_formacao, @endereco, @bairro, @cidade, @estado)";
             }
 
             var cmd = new MySqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@matricula", txtMatricula.Text);
             DateTime.TryParse(txtDataNasc.Text, out var dataNascimento);
-            cmd.Parameters.AddWithValue("@data_nasc", dataNascimento);
+            cmd.Parameters.AddWithValue("@dt_nascimento", dataNascimento);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text);
             cmd.Parameters.AddWithValue("@titulacao", cboTitulacao.Text);
             cmd.Parameters.AddWithValue("@area_formacao", txtAreaFormacao.Text);
@@ -144,12 +144,6 @@ namespace projeto4
             {
                 MessageBox.Show("Área de Formacao é obrigatório", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtAreaFormacao.Focus();
-                return false;
-            }
-            if (!DateTime.TryParse(txtDataNasc.Text, out DateTime _))
-            {
-                MessageBox.Show("Data é obrigatória", "IFSP", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtDataNasc.Focus();
                 return false;
             }
             if (string.IsNullOrEmpty(txtEndereço.Text))
@@ -221,10 +215,10 @@ namespace projeto4
                 var linha = dataGridView1.SelectedRows[0];
                 txtID.Text = linha.Cells["id"].Value.ToString();
                 txtMatricula.Text = linha.Cells["matricula"].Value.ToString();
-                txtDataNasc.Text = linha.Cells["data_nasc"].Value.ToString();
+                txtDataNasc.Text = linha.Cells["dt_nascimento"].Value.ToString();
                 txtNome.Text = linha.Cells["nome"].Value.ToString();
                 cboTitulacao.Text = linha.Cells["titulacao"].ToString();
-                txtAreaFormacao.Text = linha.Cells["area_formacao"].ToString();
+                txtAreaFormacao.Text = linha.Cells["area_formacao"].Value.ToString();
                 txtEndereço.Text = linha.Cells["endereco"].Value.ToString();
                 txtBairro.Text = linha.Cells["bairro"].Value.ToString();
                 txtCidade.Text = linha.Cells["cidade"].Value.ToString();
@@ -253,6 +247,7 @@ namespace projeto4
         private void btnNovo_Click(object sender, EventArgs e)
         {
             LimpaCampos();
+            materialTabControl1.SelectedIndex = 0;
             txtNome.Focus();
         }
 
@@ -260,6 +255,7 @@ namespace projeto4
         {
 
         }
+
     }
 
 }
